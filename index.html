@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Gestión de Personas — CRUD</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="topbar">
+    <h1>People Manager</h1>
+    <div class="controls">
+      <input id="searchInput" type="search" placeholder="Buscar por nombre o DNI..." />
+      <button id="btnNew" class="btn primary">Nueva persona</button>
+    </div>
+  </header>
+
+  <main>
+    <section class="table-wrap">
+      <table id="peopleTable" aria-describedby="tableDesc">
+        <caption id="tableDesc">Listado de personas (Nombre, DNI, Edad)</caption>
+        <thead>
+          <tr>
+            <th>Nombre</th>
+            <th>DNI</th>
+            <th>Edad</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- filas dinámicas -->
+        </tbody>
+      </table>
+      <div id="emptyState" class="empty">No hay personas. Pulsa "Nueva persona" para añadir.</div>
+    </section>
+  </main>
+
+  <!-- Modal: formulario crear/editar -->
+  <div id="modal" class="modal" aria-hidden="true" role="dialog" aria-modal="true">
+    <div class="modal-content">
+      <header class="modal-header">
+        <h2 id="modalTitle">Nueva persona</h2>
+        <button id="modalClose" class="btn close" aria-label="Cerrar">✕</button>
+      </header>
+      <form id="personForm" autocomplete="off" novalidate>
+        <div class="form-row">
+          <label for="name">Nombre</label>
+          <input id="name" name="name" type="text" required maxlength="100" />
+        </div>
+        <div class="form-row">
+          <label for="dni">DNI</label>
+          <input id="dni" name="dni" type="text" required pattern="[^\\s]+" maxlength="30" />
+          <small class="hint">Sin espacios</small>
+        </div>
+        <div class="form-row">
+          <label for="age">Edad</label>
+          <input id="age" name="age" type="number" min="0" max="200" required />
+        </div>
+        <div class="form-actions">
+          <button type="submit" class="btn primary" id="submitBtn">Guardar</button>
+          <button type="button" class="btn" id="cancelBtn">Cancelar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Toast / mensajes -->
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+  <script src="./script.js"></script>
+</body>
+</html>

@@ -1,0 +1,134 @@
+:root{
+  --bg:#f5f7fa;
+  --card:#ffffff;
+  --accent:#2f9d58;
+  --muted:#6b7280;
+  --danger:#e53935;
+  --shadow: 0 6px 18px rgba(16,24,40,0.08);
+  --radius:12px;
+  --gap:14px;
+  font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+}
+
+*{box-sizing:border-box}
+body{
+  margin:0;
+  background:var(--bg);
+  color:#111827;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+  min-height:100vh;
+}
+
+.topbar{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:18px;
+  gap:12px;
+  background:linear-gradient(90deg,#fff 0%, #fbfdff 100%);
+  border-bottom:1px solid rgba(0,0,0,0.04);
+  box-shadow:var(--shadow);
+}
+.topbar h1{margin:0;font-size:1.2rem;}
+.controls{display:flex;gap:8px;align-items:center}
+input[type="search"]{
+  padding:10px 12px;border-radius:10px;border:1px solid #e6e9ef;min-width:220px;
+}
+.btn{
+  padding:10px 14px;border-radius:10px;border:1px solid transparent;background:transparent;cursor:pointer;
+  font-weight:600;
+}
+.btn.primary{background:var(--accent);color:white;border-color:rgba(0,0,0,0.04)}
+.btn.close{background:transparent;border:0;font-size:16px;padding:6px}
+.btn.danger{background:var(--danger);color:white}
+
+main{padding:28px;display:flex;justify-content:center}
+.table-wrap{
+  width:100%;max-width:980px;background:var(--card);padding:18px;border-radius:var(--radius);
+  box-shadow:var(--shadow);
+  min-height:180px;
+}
+
+table{width:100%;border-collapse:collapse}
+th,td{padding:12px 10px;text-align:left;border-bottom:1px solid #eef2f6}
+th{background:transparent;color:var(--muted);font-weight:700}
+tbody tr:hover{background:linear-gradient(90deg,#fbfdff,#fff)}
+
+.empty{padding:18px;text-align:center;color:var(--muted)}
+
+.actions{display:flex;gap:8px;align-items:center}
+
+.modal{
+  position:fixed;inset:0;display:none;align-items:center;justify-content:center;
+  background:linear-gradient(0deg, rgba(2,6,23,0.4), rgba(2,6,23,0.4));
+  padding:20px;
+}
+.modal[aria-hidden="false"]{display:flex}
+.modal-content{
+  width:100%;max-width:480px;background:var(--card);border-radius:12px;padding:18px;box-shadow:var(--shadow);
+}
+.modal-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px}
+.form-row{display:flex;flex-direction:column;margin-bottom:12px}
+.form-row label{font-size:0.9rem;margin-bottom:6px}
+.form-row input{padding:10px;border-radius:8px;border:1px solid #e6e9ef}
+.hint{color:var(--muted);font-size:0.8rem;margin-top:4px}
+
+.form-actions{display:flex;gap:8px;justify-content:flex-end;margin-top:6px}
+
+.toast{
+  position:fixed;right:20px;bottom:20px;min-width:200px;padding:12px 14px;border-radius:10px;
+  background:rgba(0,0,0,0.8);color:white;opacity:0;transform:translateY(8px);transition:all .25s ease;
+}
+.toast.show{opacity:1;transform:none}
+
+/* responsive */
+@media (max-width:600px){
+  .table-wrap{padding:12px}
+  .topbar{flex-direction:column;align-items:flex-start;gap:12px}
+  input[type="search"]{min-width:140px}
+}
+@media (max-width:400px){
+  th:nth-child(3),td:nth-child(3),
+  th:nth-child(4),td:nth-child(4){display:none}
+}
+@media (max-width:320px){
+  th:nth-child(2),td:nth-child(2){display:none}
+}
+/* dark mode */
+@media (prefers-color-scheme:dark){
+  º:root{
+    --bg:#121212;
+    --card:#1e1e1e;
+    --accent:#2f9d58;
+    --muted:#9ca3af;
+    --danger:#ef5350;
+    --shadow: 0 6px 18px rgba(0,0,0,0.4);
+  }
+  body{background:var(--bg);color:#e5e7eb}
+  .topbar{background:linear-gradient(90deg,#1e1e1e 0%, #232323 100%);border-bottom:1px solid rgba(255,255,255,0.04);box-shadow:var(--shadow)}
+  input[type="search"]{background:#2c2c2c;border:1px solid #3c3c3c;color:#e5e7eb}
+  .btn{background:transparent;border:1px solid rgba(255,255,255,0.1);color:#e5e7eb}         
+  .btn.primary{border-color:rgba(255,255,255,0.1)}
+  .btn.danger{background:var(--danger);color:white}
+  .table-wrap{background:var(--card);box-shadow:var(--shadow)}
+  th,td{border-bottom:1px solid #2c2c2c}
+  tbody tr:hover{background:linear-gradient(90deg,#232323,#1e1e1e)}
+  .modal-content{background:var(--card);box-shadow:var(--shadow)}
+
+}
+
+
+/* custom scrollbar */
+body::-webkit-scrollbar {
+  width: 8px;
+}
+body::-webkit-scrollbar-track {
+  background: transparent;
+} 
+body::-webkit-scrollbar-thumb {
+  background-color: rgba(0,0,0,0.2);
+  border-radius: 20px;
+  border: 3px solid transparent;
+  background-clip: content-box;
+} 
